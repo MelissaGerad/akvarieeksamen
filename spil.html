@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FISKE SPIL</title>
+    <!-- Spil-side lavet af Mia -->
+    <link rel="stylesheet" href="spil.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left-icons">
+                <a href="index.html">
+                   <img src="image/billeder/home.png" alt="Home" class="icon">
+                </a>
+            </div>
+            <div class="right-icons">
+                 <a href="#info">
+                     <img src="image/billeder/info.png" alt="Info" class="iconinfo">
+                 </a>
+
+            <a href="#indstillinger">
+                <img src="image/billeder/instillinger.png" alt="Indstillinger" class="iconinstillinger">
+            </a>
+            </div>  
+        </nav>
+    </header>
+
+    <!-- === FISK SEKTION === -->
+
+ <!-- Fisk 1  -->
+ <div id="player-fish" class="swimming-fish fish1" onclick="showFishInfo('fish1')">
+    <img src="image/billeder/Frame 1.png" alt="fisk1" class="fish"> 
+</div>
+
+<!-- Fisk 2 -->
+<div class="swimming-fish fish2" onclick="showFishInfo('fish2')">
+    <img src="image/billeder/Frame 2.png" alt="Fisk 2" class="fish">
+</div>
+
+<!-- Fisk 3 -->
+<div class="swimming-fish fish3" onclick="showFishInfo('fish3')">
+    <img src="image/billeder/Frame 3.png" alt="fisk 3" class="fish">
+</div>
+
+<!-- Fisk 4 -->
+<div class="swimming-fish fish6" onclick="showFishInfo('fish6')">
+    <img src="image/billeder/Frame 4.png alt="Fisk 4" class="fish">
+</div>
+
+<!-- Fisk 5 -->
+<div class="swimming-fish fish9" onclick="showFishInfo('fish9')">
+    <img src="image/billeder/Frame 5.png" alt="Fisk 5" class="fish">
+</div>
+
+<!-- Dykker (lavet af Mia)-->
+<div class="diver">
+    <img src="image/billeder/Frame 5.png" alt="Dykker" class="diver-img">
+</div>
+
+<!-- === INFOBOKSE === -->
+
+<!-- Infoboks for fisk 1 -->
+<div id="fish1-info" class="info-box hidden">
+    <div class="info-content">
+        <span class="close-btn" onclick="closeFishInfo('fish1')">&times;</span>
+            <img src="image/billeder/Frame 1.png" alt="fisk1" class="caught-fish-image">
+        <h2>Du fangede en fisk! 🎣</h2>
+        <h3>GUL KIRURG</h3>
+        <p>Solskingul og nem at få øje på</p>
+        <p>Nysgerrig og følger de andre fisk</p>
+        <p>Kan lide små snakcs fra revet</p>
+        <button onclick="closeFishInfo('fish1')">Sæt fisken fri</button>
+    </div>
+</div>
+
+<!-- Infoboks for fisk 2 -->
+<div id="fish2-info" class="info-box hidden">
+    <div class="info-content">
+          <span class="close-btn" onclick="closeFishInfo('fish2')">&times;</span>
+              <img src="image/billeder/Frame 2.png" alt="Fisk2" class="caught-fish-image">
+        <h2>Du fangede en fisk! 🎣</h2>
+        <h3>SEJLFINNET KIRURG</h3>
+        <p> Lidt genert</p>
+        <p>Flot at kigge på for både børn og voksne</p>
+        <p>mellem revets sten og skjuler sig nogle gange</p>
+        <p>Spiser små dyr og alger</p>
+        <button onclick="closeFishInfo('fish2')">Sæt fisken fri</button>
+    </div>
+</div>
+
+<!-- Infoboks for fisk 3 -->
+<div id="fish3-info" class="info-box hidden">
+    <div class="info-content">
+          <span class="close-btn" onclick="closeFishInfo('fish3')">&times;</span>
+              <img src="image/billeder/Frame 3.png" alt="fisk3" class="caught-fish-image">
+        <h2>Du fangede en fisk! 🎣</h2>
+        <h3>ORANGEPLETTET KIRURG</h3>
+        <p> Orange med små prikker</p>
+        <p>Ligner en undervandssafari, når den svømmer</p>
+        <p>Kan lide at lege i grupper</p>
+        <p>Spiser alger og smådyr</p>
+        <button onclick="closeFishInfo('fish3')">Sæt fisken fri</button>
+    </div>
+</div>
+
+
+<!-- Infoboks for fisk 4 -->
+<div id="fish6-info" class="info-box hidden">
+    <div class="info-content">
+        <span class="close-btn" onclick="closeFishInfo('fish4')">&times;</span>
+           <img src="image/billeder/Frame 4.png"Fisk4" class="caught-fish-image">
+        <h2>Du fangede en fisk! 🎣</h2>
+        <h3>SOHAL KIRURG</h3>
+        <p> Blå med fine striber</p>
+        <p>Svømmer hurtigt og passer sit område som en lille chef</p>
+        <p>Kan nogle gange virke lidt sur, hvis andre fisk kommer for tæt</p>
+        <p>Spiser mest alger og små planter</p>
+        <button onclick="closeFishInfo('fish6')">Sæt fisken fri</button>
+    </div>
+</div>
+
+
+<!-- Infoboks for fisk 5 -->
+<div id="fish9-info" class="info-box hidden">
+    <div class="info-content">
+        <span class="close-btn" onclick="closeFishInfo('fish5')">&times;</span>
+           <img src="image/image/Frame 5.png" alt="Fisk5" class="caught-fish-image">
+        <h2>Du fangede en fisk! 🎣</h2>
+        <h3>CHROMIS</h3>
+        <p>Svømmer som en dans i vandet</p>
+        <p> Lille og hurtigt, elsker at lege </p>
+        <p>Glad</p>
+        <p>Spiser små planton</p>
+        <button onclick="closeFishInfo('fish9')">Sæt fisken fri</button>
+    </div>
+</div>
+
+
+
+<!-- Spil-område -->
+<div id="game-area"></div>
+
+<!-- ringe -->
+
+<div class="obstacle-ring" style="top:150px; left:200px;"></div>
+<div class="obstacle-ring" style="top:300px; left:400px;"></div>
+<div class="obstacle-ring" style="top:100px; left:500px;"></div>
+<div class="obstacle-ring" style="top:250px; left:700px;"></div>
+<div class="obstacle-ring" style="top:200px; left:850px;"></div>
+<div class="obstavle-ring" style="top:200px; left:500px;"></div>
+
+<!-- Additional rings added -->
+<div class="obstacle-ring" style="top:80px; left:120px;"></div>
+<div class="obstacle-ring" style="top:420px; left:220px;"></div>
+<div class="obstacle-ring" style="top:320px; left:620px;"></div>
+<div class="obstacle-ring" style="top:480px; left:900px;"></div>
+<div class="obstavle-ring" style="top:60px; left:760px;"></div>
+<div class="obstacle-ring" style="top:520px; left:420px;"></div>
+<div class="obstavle-ring" style="top:200px; left:500px;"></div>"
+<div class="obstavle-ring" style="top:200px; left:500px;"></div>"
+<div class="obstavle-ring" style="top:200px; left:500px;"></div>"
+
+<!-- Planter -->
+<div class="plant plant1" style="left:50px;"></div>
+<div class="plant plant2" style="left:150px;"></div>
+<div class="plant plant3" style="left:250px;"></div>
+<div class="plant plant4" style="left:400px;"></div>
+<div class="plant plant5" style="left:550px;"></div>
+<div class="plant plant6" style="left:700px;"></div>
+<div class="plant plant7" style="left:850px;"></div>
+ <!-- Planter -->
+ <div class="plant plant1" style="left:50px;"></div>
+ <div class="plant plant2" style="left:150px;"></div>
+ <div class="plant plant3" style="left:250px;"></div>
+ <div class="plant plant4" style="left:400px;"></div>
+ <div class="plant plant5" style="left:550px;"></div>
+ <div class="plant plant6" style="left:700px;"></div>
+ <div class="plant plant7" style="left:850px;"></div>
+
+
+
+<!-- Koraller -->
+<div class="coral coral1" style="left:80px;"></div>
+<div class="coral coral2" style="left:300px;"></div>
+<div class="coral coral3" style="left:500px;"></div>
+
+<!-- Sten -->
+<div class="stone stone1" style="left:150px;"></div>
+<div class="stone stone2" style="left:400px;"></div>
+<div class="stone stone3" style="left:650px;"></div>
+
+  <!-- Plankton -->
+    <div class="plankton" style="top:100px; left:100px;"></div>
+    <div class="plankton" style="top:200px; left:300px;"></div>
+    <div class="plankton" style="top:350px; left:500px;"></div>
+    <div class="plankton" style="top:150px; left:650px;"></div>
+    <div class="plankton" style="top:400px; left:750px;"></div>
+    <div class="plankton" style="top:400px; left:750px;"></div>
+    <div class="plankton" style="top:400px; left:750px;"></div>
+    <div class="plankton" style="top:400px; left:750px;"></div>
+    <div class="plankton" style="top:300px; left:750px;"></div>
+<!-- Plankton -->
+<div class="plankton" style="top:100px; left:100px;"></div>
+<div class="plankton" style="top:200px; left:300px;"></div>
+<div class="plankton" style="top:350px; left:500px;"></div>
+<div class="plankton" style="top:150px; left:650px;"></div>
+<div class="plankton" style="top:400px; left:750px;"></div>
+<div class="plankton" style="top:400px; left:750px;"></div>
+<div class="plankton" style="top:400px; left:750px;"></div>
+<div class="plankton" style="top:400px; left:750px;"></div>
+<div class="plankton" style="top:300px; left:750px;"></div>
+
+
+<!-- Point display -->
+<div id="score">Plankton samlet: 0</div>
+
+    
+
+<script src="spil.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Information - Akvariet</title>
+
+  <!-- Info-side lavet af Ditte -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', sans-serif;
+      background: url('image/billeder/baggrund.png') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    } 
+
+    .home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.2s;
+    }
+
+    .home-btn:hover {
+      transform: scale(1.1);
+      background-color: #45a049;
+    }
+
+    .home-btn::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: calc(100% + 40px);
+      height: calc(100% + 40px);
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.9),
+        rgba(173, 216, 230, 0.2) 40%,
+        rgba(255, 255, 255, 0.1) 70%,
+        rgba(255, 182, 193, 0.1) 90%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: -1;
+      animation: bobleglow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes bobleglow {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .info-box {
+      background-color: #ffb6f0;
+      border-radius: 25px;
+      padding: 30px 40px;
+      width: 70%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .info-header {
+      background: #e48ad4;
+      border-radius: 15px;
+      padding: 10px 0;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .menu-item {
+      background-color: #d870d0;
+      padding: 15px 20px;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .menu-item:hover {
+      background-color: #c25fbf;
+    }
+
+    .sub-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .fish-grid {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      text-align: center;
+    }
+
+    .fish-card {
+      background-color: #DA66CA;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: inset 0 0 10px rgba(255,255,255,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .fish-card img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .fish-card ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .fish-card li::before {
+      content: "• ";
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="home-btn" onclick="window.location.href='index.html'">🏠</button>
+
+  <div class="info-box">
+    <div class="info-header" onclick="showMenu()">INFORMATION</div>
+
+    <div class="menu" id="menu">
+      <div class="menu-item" onclick="showFishList()">Læs mere om vores fisk</div>
+    </div>
+
+    <div id="fishContent" style="display:none;">
+      <div class="sub-header">FISKENE I VORES AKVARIE</div>
+      <div id="fishContainer" class="fish-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    const fishData = [
+      {
+        name: "Gul kirurg",
+        img: "image/billeder/Frame 1.png",
+        traits: [
+          "Solskinsgul og nem at få øje på",
+          "Nysgerrig og følger de andre fisk",
+          "Kan lide små snacks fra revet"
+        ]
+      },
+      {
+        name: "Sejlfinnet kirurg",
+        img: "image/billeder/Frame 2.png",
+        traits: [
+          "Lidt genert",
+          "Flot at kigge på for både børn og voksne",
+          "Svømmer mellem revets sten og skjuler sig nogle gange",
+          "Spiser alger og smådyr"
+        ]
+      },
+      {
+        name: "Orangeplettet kirurg",
+        img: "image/billeder/Frame 3.png",
+        traits: [
+          "Orange med små prikker",
+          "Ligner en undervandssafari, når den svømmer",
+          "Kan lide at lege i grupper",
+          "Spiser alger og smådyr"
+        ]
+      },
+      {
+        name: "Sohal kirurg",
+        img: "image/billeder/Frame 4.png",
+        traits: [
+          "Legesyg, lidt glemsom og altid nysgerrig",
+          "Undersøger koraller og sten",
+          "Spiser små alger og plantebidder"
+        ]
+      },
+      {
+        name: "Chromis",
+        img: "image/billeder/Frame 5.png",
+        traits: [
+          "Spiser små plankton",
+          "Lille og hurtig — elsker at lege",
+          "Svømmer som en dans i vandet"
+        ]
+      }
+    ];
+
+    function showFishList() {
+      document.getElementById("menu").style.display = "none";
+      const fishContent = document.getElementById("fishContent");
+      const container = document.getElementById("fishContainer");
+      container.innerHTML = "";
+
+      fishData.forEach(fish => {
+        const card = document.createElement("div");
+        card.className = "fish-card";
+
+        card.innerHTML = `
+          <img src="${fish.img}" alt="${fish.name}">
+          <ul>${fish.traits.map(t => `<li>${t}</li>`).join("")}</ul>
+        `;
+        container.appendChild(card);
+      });
+
+      fishContent.style.display = "block";
+      container.style.display = "grid";
+    }
+
+    function showMenu() {
+      document.getElementById("fishContent").style.display = "none";
+      document.getElementById("fishContainer").style.display = "none";
+      document.getElementById("menu").style.display = "flex";
+    }
+  </script>
+
+</body>
+</html>

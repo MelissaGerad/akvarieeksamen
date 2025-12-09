@@ -1,0 +1,346 @@
+/* Billede baggrund */
+body {
+    background-image: url('image/billeder/Fiskebaggrund1.png'); 
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    /* Prevent vertical scrolling so the game view stays fixed */
+    overflow-y: hidden;
+}
+
+/* Ikonerne i headeren */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.left-icons {
+    display: flex;
+}
+
+.right-icons {
+    display: flex;
+    gap: 30px;
+}
+
+/* home icon */
+.icon {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+/* info icon */
+.iconinfo {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s ease;
+}
+
+.iconinfo:hover {
+    transform: scale(1.2);
+}
+
+/* instillinger icon */
+.iconinstillinger {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s ease;
+}
+
+.iconinstillinger:hover {
+    transform: scale(1.2);
+}
+
+
+
+/* === FISK SEKTION – OPDATERET === */
+
+/* Generel fiskestil */
+.swimming-fish {
+    position: absolute;
+    left: -200px; /* starter uden for skærmen til venstre */
+    z-index: 500;
+    animation: swimAcross linear infinite;
+    cursor: pointer;
+}
+
+/* Player-controlled fish: disable automatic swim and make it clearly on top */
+#player-fish {
+    animation: none !important;
+    left: 100px;
+    top: 40%; /* keep roughly where fish1 should be */
+    z-index: 900;
+}
+
+.fish {
+    width: 180px;
+    height: auto;
+}
+
+/* Fordel fiskene jævnt over hele skærmen (0–95% i højden)
+   og giv dem lidt forskellig hastighed for naturlig bevægelse */
+.fish1  { top:  40%;  animation-duration: 20s; }
+.fish2  { top: 10%;  animation-duration: 24s; }
+.fish3  { top: 15%;  animation-duration: 18s; }
+.fish6  { top: 30%;  animation-duration: 28s; }
+.fish9  { top: 45%;  animation-duration: 25s; }
+
+
+
+/* Animation for at svømme på tværs af skærmen */
+@keyframes swimAcross {
+    0% {
+        left: -200px; /* Starter til venstre uden for skærmen */
+        transform: scaleX(1); /* Normal retning */
+    }
+    50% {
+        left: calc(100vw + 200px); /* Går til højre uden for skærmen */
+        transform: scaleX(1);
+    }
+    51% {
+        transform: scaleX(-1); /* Vender om */
+    }
+    100% {
+        left: -200px; /* Tilbage til start */
+        transform: scaleX(-1); /* Stadig vendt om */
+    }
+}
+
+/* Dykker animation */
+.diver {
+    position: absolute;
+    left: 70%; /* Fast position fra venstre */
+    top: 100px; /* Startposition inde i viewport */
+    z-index: 600; /* over fiskene */
+    /* brug viewport-baseret dykning så den ikke bruger 550vh */
+    animation: dive 60s infinite linear;
+    cursor: pointer;
+}
+
+.diver-img {
+    width: 200px;
+    height: auto;
+}
+
+/* Dykke animation - bevægelse op og ned */
+@keyframes dive {
+    0% { top: 100px; }
+    45% { top: calc(100vh - 160px); } /* dyk ned til tæt på bunden af viewport */
+    50% { top: calc(100vh - 160px); }
+    95% { top: 100px; }
+    100% { top: 100px; }
+}
+        
+
+/* INFOBOKSE */
+
+/* Infoboks styling */
+.info-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Billede af fanget fisk */
+.caught-fish-image {
+    width: 180px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Opdater info-content for bedre layout */
+.info-content {
+    background-color: rgb(255, 247, 239);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.info-content h3 {
+    margin-top: 10px;
+    color: #ff9812;
+}
+
+@keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* MIT FISKESPIL MED PILTAST*/
+
+/* Game area: where dynamic objects (plankton, obstacles) appear */
+#game-area {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 120px); /* leave space for header */
+    margin-top: 120px; /* keep below fixed header */
+    overflow: hidden;
+    z-index: 100;
+}
+
+/* Plankton items */
+.plankton {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #355f3f 0%, #8ebf77 60%);
+    box-shadow: 0 2px 10px rgba(28, 38, 5, 0.319);
+    pointer-events: none; /* so clicks pass through */
+    z-index: 250; /* above fish background but below dialogs */
+    transform-origin: center;
+    animation: planktonDrift 3s ease-in-out infinite alternate;
+}
+
+@keyframes planktonDrift {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-10px) scale(0.95); opacity: 0.85; }
+}
+
+/* Score display */
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgb(205, 93, 228);
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px black;
+    z-index: 20;
+}
+
+
+/* Obstacles som ringe */
+.obstacle-ring {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 6px solid rgb(67, 39, 64);
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(162, 126, 169, 0.8);
+ }
+
+
+.plant {
+    position: absolute;
+    bottom: 0;
+    width: 10px; /* stilk */
+    height: 100px;
+    background: linear-gradient(to top, #0a3d0a, #32cd32);
+    border-radius: 5px;
+    transform-origin:  buttom center;
+    animation: sway 3s ease-in-out infinite alternate;
+    z-index: 3;
+}
+
+/* Blade */
+.plant::before,
+.plant::after,
+.plant .leaf1,
+.plant .leaf2 {
+    content: '';
+    position: absolute;
+    bottom: 40%; /* bladets startpunkt */
+    width: 20px;
+    height: 50px;
+    background: linear-gradient(to top, #053605, #3cb371);
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center;
+}
+
+/* Venstre og højre blade */
+.plant::before { left: -15px; transform: rotate(-30deg); }
+.plant::after  { right: -15px; transform: rotate(30deg); }
+
+/* Ekstra blade */
+.plant .leaf1 { left: -10px; bottom: 60%; transform: rotate(-20deg); height: 40px; }
+.plant .leaf2 { right: -10px; bottom: 60%; transform: rotate(20deg); height: 40px; }
+
+/* Sway animation */
+@keyframes sway {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(5deg); }
+    100% { transform: rotate(-5deg); }
+}
+
+
+
+/* Flere “grene” på koraller */
+.coral::before, .coral::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 50px;
+    background: linear-gradient(to top, #ff7b7b, #ffb3b3);
+    border-radius: 20px 20px 0 0;
+    bottom: 20px;
+}
+
+.coral::before { left: -15px; transform: rotate(-20deg); }
+.coral::after { right: -15px; transform: rotate(20deg); }
+
+/* Sten */
+.stone {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 30px;
+    background: radial-gradient(circle at 50% 50%, #a7a1a1, #333);
+    border-radius: 50% 50% 30% 30%;
+    z-index: 3;
+}
+
+/* Sway animation for levende undervandseffekt */
+@keyframes sway {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}

@@ -1,0 +1,359 @@
+ body {
+      margin: 0;
+      background-image: url('image/billeder/baggrund.png');
+  background-size: cover;         /* Fylder hele skærmen */
+  background-position: center;    /* Centrerer billedet */
+  background-repeat: no-repeat;   /* Undgår gentagelse */
+  height: 100vh;                  /* Fylder hele vinduet */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 0;
+    }
+
+    svg {
+  display: block;
+  margin: 50px auto;
+}
+text {
+  paint-order: stroke fill;
+  text-shadow: 0 6px 0 #e79b4a, 0 10px 15px rgba(0,0,0,0.3);
+}
+
+.settings-btn:hover {
+  transform: scale(1.1);
+  background-color: #FFD94D; /* lidt lysere på hover */
+}
+
+/* --- Boble-effekt --- */
+.settings-btn::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(173, 216, 230, 0.2) 40%,
+    rgba(255, 255, 255, 0.1) 70%,
+    rgba(255, 182, 193, 0.1) 90%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.4),
+    inset 0 0 25px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  z-index: -1;
+  animation: bobleglow 6s ease-in-out infinite alternate;
+}
+
+/* Lysrefleks */
+.settings-btn::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(212, 97, 175, 0.923) 60%,
+    transparent 100%
+  );
+  opacity: 0.8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: reflektion 4s ease-in-out infinite alternate;
+}
+
+
+    /* KNAPPER START */
+
+
+    .buttons {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    /* ensure top container and info button are above other elements */
+    .top {
+      position: relative;
+      z-index: 30;
+    }
+
+    .btn {
+      top: 50px;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      backface-visibility: hidden;
+    }
+
+
+    .btn:hover {
+      transform: scale(1.1);
+      background-color: #f5a4da;
+    }
+
+    .btn .symbol {
+  font-size: 3.5rem;      /* gør symbolet større */
+  font-weight: 900;       /* tykkere */
+  font-family: 'Arial', sans-serif; /* mere afrundet */
+  line-height: 1;         /* centrerer symbolet lodret */
+}
+
+
+    .btn.play {
+  width: 150px;     /* større bredde */
+  height: 150px;    /* større højde */
+  font-size: 2.5rem; /* større play-symbol */
+  background-color: rgba(23,204,48);
+}
+
+    /* Make anchor links styled as buttons not show link decorations */
+    a.btn {
+      display: inline-flex;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Prevent subpixel seam lines by forcing transform and will-change */
+    .btn, a.btn {
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+
+.top-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: row;
+  gap: 40px;      /* afstand mellem knapperne */
+    z-index: 2000; /* foran alt andet */
+}
+
+.settings-btn,
+.info-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: rgb(248, 206, 223);
+    font-weight: bold;
+    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* GEAR */
+.settings-btn {
+    background-color: #ff9900;
+}
+
+/* INFO (den lyserøde “i”) */
+.info-btn {
+    background-color: rgb(228, 121, 174);
+}
+
+
+
+.btn-icon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  display: block;
+}
+
+.btn.game {
+  width: 100px;
+  height: 100px;
+  font-size: 2.5rem;
+  position: relative;
+  top: 150px;   /* rykker den op */
+  left: -10px; /* rykker den lidt mod venstre (eller brug +20px for venstre) */
+  background-color: rgb(201, 200, 200);
+}
+
+/* --- Boble omkring knapperne --- */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(173, 216, 230, 0.2) 40%,
+    rgba(255, 255, 255, 0.1) 70%,
+    rgba(255, 182, 193, 0.1) 90%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.4),
+    inset 0 0 25px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  z-index: -1;
+  animation: bobleglow 6s ease-in-out infinite alternate;
+}
+
+/* --- Lysrefleks på boblen --- */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 100%
+  );
+  opacity: 0.8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: reflektion 4s ease-in-out infinite alternate;
+}
+
+/* --- Animationer til boblen og refleks --- */
+@keyframes bobleglow {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.95; }
+  100% { transform: scale(1.05) rotate(2deg); opacity: 1; }
+}
+
+@keyframes reflektion {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50%  { transform: translate(5px, -8px) scale(1.1); opacity: 1; }
+  100% { transform: translate(-3px, -5px) scale(0.95); opacity: 0.7; }
+}
+/* KNAPPER SLUT */
+
+
+/* Strongly remove focus/tap outlines globally for interactive elements that showed artifacts */
+button, a, img, .btn, .icon, .btn-icon {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Keep accessible focus styles for keyboard users */
+:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 6px rgba(0,0,0,0.12) !important;
+}
+
+
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .bottom img {
+      height: 200px;
+      object-fit: cover;
+      margin: 0;
+    }
+
+    .dykker {
+      position: absolute;
+      right: -50px;
+      height: 440px;
+      bottom: 30px;
+      animation: flyd 5s ease-in-out infinite;
+    }
+
+     /* Flydeanimation (dykker) – op og ned bevægelse */
+  @keyframes flyd {
+    0%   { transform: translate(-50%, 0px) rotate(-2deg); }
+    50%  { transform: translate(-50%, -20px) rotate(2deg); }
+    100% { transform: translate(-50%, 0px) rotate(-2deg); }
+  }
+
+    .settings {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #111;
+      gap: 20px;
+    }
+
+  
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  border-radius: 50%;
+  background: rgba(239, 236, 236, 0.737);
+  animation: rise 8s linear infinite;
+  pointer-events: none; /* så man ikke klikker på dem */
+  z-index: 2; /* Sørger for at boblerne ligger foran baggrunden */
+}
+
+
+/* INDSTILLINGER KNAP */ 
+.settings-btn {
+  position: absolute;      /* placering i hjørnet */
+  top: 5vh;
+  right: 5vw;
+  width: 80px;             /* mindre end play-knappen */
+  height: 80px;
+  font-size: 2rem;         /* symbol-størrelse */
+  background-color: #FFA200; /* gul-orange */
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;             /* sørg for den ligger over bobler */
+  gap: 100
+  px
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh) scale(0.8);
+    opacity: 0;
+  }
+} 
